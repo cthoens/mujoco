@@ -39,6 +39,7 @@ namespace Mujoco {
       }
       mjcf.SetAttribute("body1", Body1.MujocoName);
       mjcf.SetAttribute("body2", Body2.MujocoName);
+      mjcf.SetAttribute("anchor", MjEngineTool.Vector3ToMjcf(MjEngineTool.MjVector3(transform.localPosition)));
     }
 
     public void OnValidate() {

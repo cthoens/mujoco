@@ -295,6 +295,17 @@ public class MjScene : MonoBehaviour {
     SyncUnityToMjState();
   }
 
+  public unsafe void SyncMjToUnityState() {
+    // Bind the components to their Mujoco counterparts.
+    foreach (var component in _orderedComponents) {
+      component.BindToRuntime(Model, Data);
+    }
+
+    // update mj transforms:
+    MujocoLib.mj_kinematics(Model, Data);
+    SyncUnityToMjState();
+  }
+
   // Destroys the Mujoco scene.
   public unsafe void DestroyScene() {
     if (Model != null) {

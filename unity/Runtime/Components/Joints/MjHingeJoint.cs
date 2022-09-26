@@ -41,6 +41,7 @@ namespace Mujoco {
 
     protected override unsafe void OnBindToRuntime(MujocoLib.mjModel_* model, MujocoLib.mjData_* data) {
       base.OnBindToRuntime(model, data);
+      data->qpos[QposAddress] = (Configuration % 360f) * Mathf.Deg2Rad;
       data->qvel[DofAddress] = Velocity;
     }
 
