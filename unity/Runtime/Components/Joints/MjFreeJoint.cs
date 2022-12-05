@@ -25,5 +25,10 @@ namespace Mujoco {
     protected override XmlElement OnGenerateMjcf(XmlDocument doc) {
       return (XmlElement)doc.CreateElement("freejoint");
     }
+
+    protected override unsafe void OnBindToRuntime(MujocoLib.mjModel_* model, MujocoLib.mjData_* data) {
+      base.OnBindToRuntime(model, data);
+      MjEngineTool.SetMjTransform(&data->qpos[QposAddress], transform.position, transform.rotation);
+    }
   }
 }
